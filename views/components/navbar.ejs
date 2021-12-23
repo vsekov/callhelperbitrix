@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Скрипты продаж</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        /* The sidebar menu */
+    .sidebar {
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0;
+    right: 0;
+    background-color: #111; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    }
+
+    /* The sidebar links */
+    .sidebar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    }
+
+    /* When you mouse over the navigation links, change their color */
+    .sidebar a:hover {
+    color: #f1f1f1;
+    }
+
+    /* Position and style the close button (top right corner) */
+    .sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-right: 50px;
+    }
+
+    /* The button used to open the sidebar */
+    .openbtn {
+    display: block;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    margin-left: auto; 
+    margin-right: 0;
+
+    width: 50px;
+    height: 40px;
+    color: #5F5F5F;
+    text-align: center;
+    background: #FFFFFF;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    line-height: 1em;
+    }
+/* 
+    .openbtn:hover {
+    background-color: #444;
+    } */
+
+    /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+    #main {
+    transition: margin-right .5s; /* If you want a transition effect */
+    padding: 20px;
+    }
+
+    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+    @media screen and (max-height: 450px) {
+    .sidebar {padding-top: 15px;}
+    .sidebar a {font-size: 18px;}
+    }
+    </style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+      
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
+    
+    
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">&#9776;</button>
+        <h2>Collapsed Sidebar</h2>
+        <p>Content...</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium perferendis consectetur totam et amet laudantium iure. Cumque tempora sunt minus asperiores voluptate. Dolores porro perferendis quis fugiat iste doloremque impedit ipsum temporibus suscipit, culpa voluptatibus cum facilis voluptas fugit quos, maiores quae sint architecto repellat iure? Distinctio possimus dignissimos provident, omnis temporibus minus itaque ratione reprehenderit, iste suscipit tempora? Expedita itaque eligendi est molestiae qui explicabo sapiente voluptate! Nam sit repudiandae, ducimus quam deserunt consequuntur atque maiores numquam beatae possimus officia reprehenderit distinctio molestiae optio quae rem harum assumenda est nulla expedita sequi et laborum aperiam? Atque totam debitis distinctio cum enim numquam, ipsum optio dolorem perferendis mollitia libero qui omnis pariatur in deleniti impedit, aliquam similique doloribus. Debitis sunt, id blanditiis, asperiores quod omnis beatae possimus cumque optio obcaecati commodi illo similique ex dolor laboriosam inventore rerum qui magnam ipsum aliquam, alias sequi? Voluptatum neque dignissimos, eaque molestias atque, ipsam eveniet culpa animi, porro doloremque libero nesciunt! Quis deleniti nihil unde dolores alias provident illo, ullam consequatur expedita ipsam nisi molestias incidunt obcaecati beatae soluta voluptas repudiandae autem sit debitis ipsum! Quae, mollitia nemo! Eum laborum perspiciatis soluta quaerat dolorem nesciunt nisi adipisci ex accusamus eaque eos, error cum.</p>
+    </div>
+      
+    
+
+      <script>
+        function openNav() {
+            $('#mySidebar').css({'width': '25%'});
+            $("#main").css({'marginRight': '25%'});
+            $(".openbtn").attr('onclick', 'closeNav()');
+        }
+        function closeNav() {
+            $('#mySidebar').css({'width': '0'});
+            $("#main").css({'marginRight': '0'});
+            $(".openbtn").attr('onclick', 'openNav()');
+        }
+      </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

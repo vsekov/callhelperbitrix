@@ -1,0 +1,48 @@
+nav{
+  margin: 0;
+}
+ul{
+  list-style-type: none;
+  padding-left: 22px;
+}
+#ulMenuNavbar{
+  padding-left: 0;
+}
+ul.slideContent {
+  display: none;
+}
+
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+
+a.header {
+  color: #164DCA ;
+}
+div.closed {
+  color: #CA1616;
+}
+
+a:hover {
+  color: LightSlateGray  ;
+}
+
+div.button-closed{
+  text-align: center;
+  width: 1em;
+  height:  1em;
+  line-height: 1em;
+
+  background: #FFFFFF;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+li{
+  margin-top: 8px;
+}
+
+#titlemenu:not(.closed){
+  color: #164DCA ;
+}
+
