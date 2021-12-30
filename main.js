@@ -4,7 +4,7 @@ var express = require("express");
 
 const mongo = require("mongodb");
 const client = new mongo.MongoClient(
-  "mongodb+srv://root:password@cluster0.dt8nz.mongodb.net/callhelper?retryWrites=true&w=majority"
+  ""
 );
 
 var app = express();
@@ -19,6 +19,34 @@ app.use("/static", express.static(appLocals.static));
 
 app.get("/", function (req, res) {
   res.render(appLocals.pages + "index.ejs");
+});
+
+app.get("/editor", async function (req, res) {
+  var scripts = await getScriptsOfDomain("domainName");
+  
+  // console.log(scripts);
+  pageName = "Редактор скриптов";
+  var element_with_id = "";
+  if (req.query["pageId"] && req.query["pageId"].length > 0) {
+    element_with_id = utils.getObjects(scripts, "id", req.query["pageId"]);
+    if (element_with_id) {
+      pageName += ": " + element_with_id[0].name;
+    }
+  } else {
+    var obj = {
+      json: scripts,
+      title: "Скрипты продаж",
+      pageName: pageName,
+    };
+    return res.render(appLocals.pages + "editor.ejs", obj);
+  }
+  var obj = {
+    json: scripts,
+    title: "Скрипты продаж",
+    pageName: pageName,
+    pageData: element_with_id[0],
+  };
+  res.render(appLocals.pages + "editor.ejs", obj);
 });
 
 app.get("/view", async function (req, res) {
@@ -78,3 +106,39 @@ const getListOfDomains = async () => {
     await client.close();
   }
 };
+const addScriptToDomain = async (domainName, script) => {
+  try {
+    await client.connect();
+    const collection = db.collection(`${domainName}_scripts`);
+    const result = await collection.insertOne(script);
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
+  }
+}
+const deleteScriptFromDomain = async (domainName, id) => {
+  try {
+    await client.connect();
+    const collection = db.collection(`${domainName}_scripts`);
+    const result = await collection.deleteOne({ id: id });
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
+  }
+}
+const replaceScriptFromDomain = async (domainName, id, data) => {
+  try {
+    await client.connect();
+    const collection = db.collection(`${domainName}_scripts`);
+    const result = await collection.replaceOne({ id: id }, data);
+    console.log(result);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    await client.close();
+  }
+}
