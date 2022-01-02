@@ -109,6 +109,15 @@ app.get("/editor", async function (req, res) {
     let deleteScriptId = req.query["deleteScript"];
     await deleteScriptFromDomain("domainName", deleteScriptId);
   }
+  else if (req.query["delete"] && req.query["delete"].length > 0) {
+    let deleteId = req.query["delete"];
+    let allScripts = await getScriptsOfDomain("domainName");
+    // console.log(  getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0]  );
+    let script = getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0];
+    script = await removeAnswerBySearch(script, deleteId);
+    // console.log(JSON.stringify(script, null, 4));
+    console.log(  await replaceScriptFromDomain("domainName",script["mainId"], script)  );
+  }
 
   var scripts = await getScriptsOfDomain("domainName");
 
@@ -315,6 +324,7 @@ const addScoreByPageId = async (domainName, mainId, cid) => {
 
 
 var crypto = require("crypto");
+const { json } = require("express/lib/response");
 function generateId() {
   return crypto.randomBytes(20).toString('hex');
 }
@@ -358,4 +368,19 @@ const addPageByPageId = async (domainName, mainId, cid, pageName) => {
     await client.close();
   }
 
+}
+
+// * сначала ищет объект с выбранным айди, его parentId будет searchValue, а searchId будет "id"
+// * находит этот объект и удаляе  
+function removeAnswerBySearch(obj, deleteId) {
+  searchId = 'id';
+  searchValue = getObjects(obj, "id", deleteId)[0]["parentId"];
+  found = false;
+  foundValue = undefined;
+  iterate(obj);
+  console.log(`foundValue: `+foundValue);
+  foundValue.answers.splice(foundValue["answers"].findIndex(e => e.id === deleteId),1);
+  // foundValue[key] = value;
+
+  return obj;
 }
