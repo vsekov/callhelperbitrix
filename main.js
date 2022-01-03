@@ -351,6 +351,7 @@ const addPageByPageId = async (domainName, mainId, cid, pageName) => {
     scripts = scripts[0];
     scripts = AddBySearch(scripts, "id", cid, {
       "mainId": mainId,
+      "parentId":cid,
       "id": generateId(),
       "name": pageName,
       "text": "Неотредактированный текст оператора",
