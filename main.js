@@ -1,3 +1,5 @@
+const io = require('@pm2/io');
+
 var _ = require("underscore");
 const utils = require("./utils");
 var express = require("express");
@@ -6,6 +8,18 @@ const mongo = require("mongodb");
 const client = new mongo.MongoClient(
   'mongodb+srv://root:z123456@cluster0.dt8nz.mongodb.net/callhelper?retryWrites=true&w=majority'
 );
+
+const registeredDomains = io.metric({
+  name: 'Registered Domains'
+})
+
+
+setInterval(async () => {
+  let domainsCount = await getListOfDomains();
+  registeredDomains.set(domainsCount.length);
+  // console.log(domainsCount.length);
+}, 10000);
+
 const bodyParser = require("body-parser");
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
@@ -116,7 +130,7 @@ app.get("/editor", async function (req, res) {
     let script = getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0];
     script = await removeAnswerBySearch(script, deleteId);
     // console.log(JSON.stringify(script, null, 4));
-    console.log(  await replaceScriptFromDomain("domainName",script["mainId"], script)  );
+    console.log(await replaceScriptFromDomain("domainName", script["mainId"], script));
   }
 
   var scripts = await getScriptsOfDomain("domainName");
@@ -351,7 +365,7 @@ const addPageByPageId = async (domainName, mainId, cid, pageName) => {
     scripts = scripts[0];
     scripts = AddBySearch(scripts, "id", cid, {
       "mainId": mainId,
-      "parentId":cid,
+      "parentId": cid,
       "id": generateId(),
       "name": pageName,
       "text": "Неотредактированный текст оператора",
@@ -379,8 +393,8 @@ function removeAnswerBySearch(obj, deleteId) {
   found = false;
   foundValue = undefined;
   iterate(obj);
-  console.log(`foundValue: `+foundValue);
-  foundValue.answers.splice(foundValue["answers"].findIndex(e => e.id === deleteId),1);
+  console.log(`foundValue: ` + foundValue);
+  foundValue.answers.splice(foundValue["answers"].findIndex(e => e.id === deleteId), 1);
   // foundValue[key] = value;
 
   return obj;
