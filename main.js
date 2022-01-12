@@ -6,7 +6,7 @@ var express = require("express");
 
 const mongo = require("mongodb");
 const client = new mongo.MongoClient(
-  'mongodb+srv://root:z123456@cluster0.dt8nz.mongodb.net/callhelper?retryWrites=true&w=majority'
+  'mongodb+srv://root:z123456@cluster0.dt8nz.mongodb.net/test?authSource=admin&replicaSet=atlas-jvzjfm-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true'
 );
 
 const registeredDomains = io.metric({
