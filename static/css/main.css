@@ -97,6 +97,7 @@ content main {
 
 div.maincontent {
   padding-left: 25px;
+  padding-right: 25px;
   padding-top: 12px;
   display: flex;
   flex-direction: column;
@@ -157,8 +158,9 @@ nav {
   text-align: center;
   letter-spacing: -0.015em;
   margin-bottom: 10px;
-  width: 692px;
-  height: 50px;
+  width: 100%;
+  height: min-content;
+  /* height: 50px; */
   left: 20px;
   top: 135px;
 
