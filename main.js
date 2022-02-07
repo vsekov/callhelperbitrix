@@ -178,6 +178,8 @@ app.all("/view", async function (req, res) {
     }
   } else {
     var obj = {
+      //data equal to stringified json of all post data
+      data: JSON.stringify(req.query),
       json: scripts,
       title: "Скрипты продаж",
       pageName: "Скрипты продаж",
@@ -185,6 +187,8 @@ app.all("/view", async function (req, res) {
     return res.render(appLocals.pages + "initialViewScript.ejs", obj);
   }
   var obj = {
+    //data equal to stringified json of all post data
+    data: JSON.stringify(req.query),
     json: scripts,
     title: "Скрипты продаж",
     pageName: pageName,
