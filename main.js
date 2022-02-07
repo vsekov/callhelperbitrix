@@ -44,7 +44,7 @@ app.get("/", function (req, res) {
   res.render(appLocals.pages + "index.ejs");
 });
 
-app.post("/editor", urlencodedParser, async function (req, res) {
+app.all("/editor", urlencodedParser, async function (req, res) {
   console.log(req.body);
 
   //checking get and post methods request param
@@ -119,7 +119,7 @@ app.post("/editor", urlencodedParser, async function (req, res) {
   res.render(appLocals.pages + "editor.ejs", obj);
 });
 
-app.post("/editor", async function (req, res) {
+app.all("/editor", async function (req, res) {
 
   //deleteScript request processing 
   if (req.query["deleteScript"] && req.query["deleteScript"].length > 0) {
@@ -166,7 +166,7 @@ app.post("/editor", async function (req, res) {
   res.render(appLocals.pages + "editor.ejs", obj);
 });
 
-app.post("/view", async function (req, res) {
+app.all("/view", async function (req, res) {
   var scripts = await getScriptsOfDomain("domainName");
   // console.log(scripts);
   pageName = "Начало";
