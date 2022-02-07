@@ -23,12 +23,17 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic" rel="stylesheet" />
 
     <% if (headers !=undefined) { %> <%- headers %> <% } %>
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link href="https://cdn.lineicons.com/3.0/lineicons.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <a href="view" style="text-decoration: none;"><p class="headerp">Скрипты продаж</p></a>
+      <% if (typeof isEditor != 'undefined') { %> <a href="editor" style="text-decoration: none;"><p class="headerp">Редактор скриптов</p></a> <a href="view" style="text-decoration: none;"><p style="color: #164CCA88" class="headerp">Просмотр скриптов</p></a><% } else {%>
+      
+      
+      <a href="view" style="text-decoration: none;"><p class="headerp">Просмотр скриптов</p></a><% } %>
+      
       <hr />
     </header>
     <heading>

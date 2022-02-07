@@ -96,7 +96,7 @@ var colors = ["DDFBE1", "FBDDDD", "FBFBDD", "DDDDFB", "EBFFFF","EFECEE","DFFEFD"
 </script>
 <script src="/static/js/navBar.js"></script>
 
-`, content: `${mainText}`}) -%>
+`, content: `${mainText}`, isEditor: 1}) -%>
 <%
 
 } else{%>
@@ -249,7 +249,7 @@ var colors = ["DDFBE1", "FBDDDD", "FBFBDD", "DDDDFB", "EBFFFF","EFECEE","DFFEFD"
         $("a#aname${pageId}").parents("li").children("ul.slideContent").siblings("a").children("div").text("-");
         $("a#aname${pageId}").parents("li").children("ul.slideContent").siblings("a").children("div").addClass("closed"); 
     </script>
-    `, content: `<a href = "/editor">Перейти на главную</a><br> ${mainText}`+answers}) -%>
+    `, content: `<a href = "/editor">Перейти на главную</a><br> ${mainText}`+answers, isEditor: 1}) -%>
     
       
 
