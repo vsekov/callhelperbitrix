@@ -109,7 +109,7 @@ var colors = ["DDFBE1", "FBDDDD", "FBFBDD", "DDDDFB", "EBFFFF","EFECEE","DFFEFD"
             mainText = `<div class="editOperatorText"  data-toggle="modal" data-target="#operatorTextModal">
                 <span style="font-size: 12px;">Текст оператора:</span>
                 <br>
-                ${pageData["text"]}</div>
+                ${pageData["text"].replace(/\n/g, "<br />")}</div>
                 <div class="modal fade" id="operatorTextModal" tabindex="-1" role="dialog" aria-labelledby="operatorTextModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
