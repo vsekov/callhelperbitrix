@@ -47,6 +47,21 @@ app.get("/", function (req, res) {
 app.all("/editor", urlencodedParser, async function (req, res) {
   console.log(req.body);
 
+  //deleteScript request processing 
+  if (req.query["deleteScript"] && req.query["deleteScript"].length > 0) {
+    let deleteScriptId = req.query["deleteScript"];
+    await deleteScriptFromDomain("domainName", deleteScriptId);
+  }
+  else if (req.query["delete"] && req.query["delete"].length > 0) {
+    let deleteId = req.query["delete"];
+    let allScripts = await getScriptsOfDomain("domainName");
+    // console.log(  getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0]  );
+    let script = getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0];
+    script = await removeAnswerBySearch(script, deleteId);
+    // console.log(JSON.stringify(script, null, 4));
+    console.log(await replaceScriptFromDomain("domainName", script["mainId"], script));
+  }
+
   //checking get and post methods request param
   if (req.query["request"] && req.query["request"].length > 0) {
     let request = req.query["request"];
@@ -119,52 +134,53 @@ app.all("/editor", urlencodedParser, async function (req, res) {
   res.render(appLocals.pages + "editor.ejs", obj);
 });
 
-app.all("/editor", async function (req, res) {
+// !
+// app.all("/editor", async function (req, res) {
 
-  //deleteScript request processing 
-  if (req.query["deleteScript"] && req.query["deleteScript"].length > 0) {
-    let deleteScriptId = req.query["deleteScript"];
-    await deleteScriptFromDomain("domainName", deleteScriptId);
-  }
-  else if (req.query["delete"] && req.query["delete"].length > 0) {
-    let deleteId = req.query["delete"];
-    let allScripts = await getScriptsOfDomain("domainName");
-    // console.log(  getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0]  );
-    let script = getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0];
-    script = await removeAnswerBySearch(script, deleteId);
-    // console.log(JSON.stringify(script, null, 4));
-    console.log(await replaceScriptFromDomain("domainName", script["mainId"], script));
-  }
+//   //deleteScript request processing 
+//   if (req.query["deleteScript"] && req.query["deleteScript"].length > 0) {
+//     let deleteScriptId = req.query["deleteScript"];
+//     await deleteScriptFromDomain("domainName", deleteScriptId);
+//   }
+//   else if (req.query["delete"] && req.query["delete"].length > 0) {
+//     let deleteId = req.query["delete"];
+//     let allScripts = await getScriptsOfDomain("domainName");
+//     // console.log(  getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0]  );
+//     let script = getObjects(allScripts, "id", getObjects(allScripts, "id", deleteId)[0]["mainId"])[0];
+//     script = await removeAnswerBySearch(script, deleteId);
+//     // console.log(JSON.stringify(script, null, 4));
+//     console.log(await replaceScriptFromDomain("domainName", script["mainId"], script));
+//   }
 
-  var scripts = await getScriptsOfDomain("domainName");
+//   var scripts = await getScriptsOfDomain("domainName");
 
-  // console.log(scripts);
-  pageName = "Редактор скриптов";
-  var element_with_id = "";
-  if (req.query["pageId"] && req.query["pageId"].length > 0) {
-    element_with_id = utils.getObjects(scripts, "id", req.query["pageId"]);
-    if (element_with_id) {
-      pageName += ": " + element_with_id[0].name;
-    }
-  } else {
-    var obj = {
-      json: scripts,
-      title: "Скрипты продаж",
-      pageName: pageName,
-    };
-    return res.render(appLocals.pages + "editor.ejs", obj);
-  }
+//   // console.log(scripts);
+//   pageName = "Редактор скриптов";
+//   var element_with_id = "";
+//   if (req.query["pageId"] && req.query["pageId"].length > 0) {
+//     element_with_id = utils.getObjects(scripts, "id", req.query["pageId"]);
+//     if (element_with_id) {
+//       pageName += ": " + element_with_id[0].name;
+//     }
+//   } else {
+//     var obj = {
+//       json: scripts,
+//       title: "Скрипты продаж",
+//       pageName: pageName,
+//     };
+//     return res.render(appLocals.pages + "editor.ejs", obj);
+//   }
 
 
 
-  var obj = {
-    json: scripts,
-    title: "Скрипты продаж",
-    pageName: pageName,
-    pageData: element_with_id[0],
-  };
-  res.render(appLocals.pages + "editor.ejs", obj);
-});
+//   var obj = {
+//     json: scripts,
+//     title: "Скрипты продаж",
+//     pageName: pageName,
+//     pageData: element_with_id[0],
+//   };
+//   res.render(appLocals.pages + "editor.ejs", obj);
+// });
 
 app.all("/view", async function (req, res) {
   var scripts = await getScriptsOfDomain("domainName");
