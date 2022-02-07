@@ -193,7 +193,7 @@ app.get("/view", async function (req, res) {
   res.render(appLocals.pages + "viewScript.ejs", obj);
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);
 
 const getScriptsOfDomain = async (domainName) => {
   try {
