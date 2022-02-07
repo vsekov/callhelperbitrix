@@ -1,44 +1,45 @@
 <style>
   
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
-  #answersContainer {
-    display: flexbox;
-  }
-  #answerId {
-    display:inline-block;
-    padding-top: 14px;
-    padding-bottom: 14px;
-    padding: 14px;
-    background: #ddfbe1;
-    box-shadow: 0px 3px 14px -5px rgba(0, 0, 0, 0.25);
-    border-radius: 3px;
-    font-family: Open Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-
-    letter-spacing: -0.015em;
-
-    color: #5F5F5F;
-
-    justify-content: center;
-    align-items: center;
-
-    cursor: pointer;
-    margin: 3px;
-    
-  }
-  #answerId:hover{
-    background: hsl(127, 100%, 88%);
-  }
-</style>
-
-<div id="answersContainer">
-  <div id="answerId">
-    Да, у меня есть свободное время
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,regular,500,600,700,800,300italic,italic,500italic,600italic,700italic,800italic);
+    #answersContainer {
+      display: flexbox;
+    }
+    #answerId {
+      display:inline-block;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      padding: 14px;
+      background: #ddfbe1;
+      box-shadow: 0px 3px 14px -5px rgba(0, 0, 0, 0.25);
+      border-radius: 3px;
+      font-family: Open Sans;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 22px;
+  
+      letter-spacing: -0.015em;
+  
+      color: #5F5F5F;
+  
+      justify-content: center;
+      align-items: center;
+  
+      cursor: pointer;
+      margin: 3px;
+      
+    }
+    #answerId:hover{
+      background: hsl(127, 100%, 88%);
+    }
+  </style>
+  
+  <div id="answersContainer">
+    <div id="answerId">
+      Да, у меня есть свободное время
+    </div>
+    <div id="answerId" style="background:hsl(0, 100%, 93%)" onMouseout="this.style.background='hsl(0, 100%, 93%)'" onMouseOver="this.style.background='hsl(0, 100%, 88%)'">
+      Нет, я занят
+    </div>
   </div>
-  <div id="answerId" style="background:hsl(0, 100%, 93%)" onMouseout="this.style.background='hsl(0, 100%, 93%)'" onMouseOver="this.style.background='hsl(0, 100%, 88%)'">
-    Нет, я занят
-  </div>
-</div>
+  
