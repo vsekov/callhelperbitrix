@@ -178,7 +178,6 @@ app.all("/view", async function (req, res) {
     }
   } else {
     var obj = {
-      data: JSON.stringify(req.body),
       json: scripts,
       title: "Скрипты продаж",
       pageName: "Скрипты продаж",
